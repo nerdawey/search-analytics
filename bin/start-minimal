@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Minimal startup script for Railway
+echo "Starting Rails app..."
+
+# Set environment
+export RAILS_ENV=production
+
+# Start server directly
+exec bundle exec rails server -p $PORT

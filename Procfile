@@ -1,2 +1,2 @@
-web: ./bin/start-simple
+web: ./bin/start-minimal
 worker: bundle exec sidekiq -C config/sidekiq.yml || echo "Sidekiq worker not started (Redis may not be available)"
