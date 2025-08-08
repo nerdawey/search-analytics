@@ -40,7 +40,7 @@ group :development do
   gem 'error_highlight', platforms: [:ruby]
   gem 'rubocop', '~> 1.50', require: false
   gem 'rubocop-rails', '~> 2.20', require: false
-  gem 'rubocop-rspec', '~> 2.20', require: false
+  gem 'rubocop-rspec', '~> 3.6', require: false
   gem 'web-console'
 end
 
