@@ -28,7 +28,7 @@ group :development, :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-rails', '~> 6.0'
   gem 'selenium-webdriver', '~> 4.10'
-  gem 'shoulda-matchers', '~> 5.3'
+  gem 'shoulda-matchers', '~> 6.5'
   gem 'timecop', '~> 0.9'
   gem 'webdrivers', '~> 5.3'
 end
