@@ -11,7 +11,7 @@ gem 'rails', '~> 7.1.0'
 
 # Background job processing
 gem 'redis', '~> 4.5.0'
-gem 'sidekiq', '~> 6.5.12'
+gem 'sidekiq', '~> 8.0.6'
 
 # Asset pipeline and frontend
 gem 'jbuilder'
