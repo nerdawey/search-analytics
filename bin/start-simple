@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Simple production startup script for Railway
+echo "🚀 Starting Search Analytics..."
+
+# Set production environment
+export RAILS_ENV=production
+
+# Run migrations if needed
+echo "🔄 Running migrations..."
+bundle exec rails db:migrate
+
+# Start the server
+echo "🚀 Starting Puma..."
+exec bundle exec puma -C config/puma.rb

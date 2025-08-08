@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   # Simple root endpoint for health checks
   get 'up', to: 'health#simple'
+  get 'healthz', to: 'health#simple'
   
   # Main search page
   root 'search#index'

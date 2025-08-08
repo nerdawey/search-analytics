@@ -13,7 +13,7 @@ class HealthController < ApplicationController
 
   def simple
     # Ultra-simple health check for Railway
-    render plain: 'OK'
+    render plain: 'OK', status: 200
   end
 
   def detailed
