@@ -9,5 +9,5 @@
 
 # Redis configuration
 :redis:
-  :url: redis://localhost:6379/0
-  :namespace: search_analytics_development
+  :url: <%= ENV.fetch('REDIS_URL', 'redis://localhost:6379/0') %>
+  :namespace: search_analytics_<%= Rails.env %>
