@@ -51,7 +51,13 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Replace the default in-process and non-durable queuing backend for Active Job.
-  # config.active_job.queue_adapter = :resque
+  # Use async adapter if Redis is not available, otherwise use sidekiq
+  if ENV['REDIS_URL'].present?
+    config.active_job.queue_adapter = :sidekiq
+  else
+    config.active_job.queue_adapter = :async
+    Rails.logger.warn "Using async job adapter (Redis not available)"
+  end
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
