@@ -7,7 +7,7 @@
 :max_retries: 3
 :retry_interval: 5
 
-# Redis configuration
+# Redis configuration - will be overridden by initializer
 :redis:
-  :url: <%= ENV.fetch('REDIS_URL', 'redis://localhost:6379/0') %>
-  :namespace: search_analytics_<%= Rails.env %>
+  :url: redis://localhost:6379/0
+  :namespace: search_analytics_development
