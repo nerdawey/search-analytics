@@ -7,9 +7,9 @@ echo "🚀 Starting Search Analytics application..."
 if [ "$RAILS_ENV" = "production" ]; then
   echo "📦 Production environment detected"
   
-  # Check if database is available
+  # Quick database connection check
   echo "🗄️  Checking database connection..."
-  bundle exec rails db:version > /dev/null 2>&1
+  timeout 10 bundle exec rails runner "ActiveRecord::Base.connection.execute('SELECT 1')" > /dev/null 2>&1
   if [ $? -eq 0 ]; then
     echo "✅ Database connection successful"
   else
@@ -17,15 +17,9 @@ if [ "$RAILS_ENV" = "production" ]; then
     exit 1
   fi
   
-  # Check if Redis is available (optional)
+  # Skip Redis check for faster startup (optional service)
   if [ -n "$REDIS_URL" ]; then
-    echo "🔴 Checking Redis connection..."
-    bundle exec rails runner "Redis.new(url: ENV['REDIS_URL']).ping" > /dev/null 2>&1
-    if [ $? -eq 0 ]; then
-      echo "✅ Redis connection successful"
-    else
-      echo "⚠️  Redis connection failed, continuing without Redis"
-    fi
+    echo "🔴 Redis URL configured (will check during runtime)"
   else
     echo "⚠️  REDIS_URL not set, continuing without Redis"
   fi

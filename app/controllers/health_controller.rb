@@ -1,5 +1,23 @@
 class HealthController < ApplicationController
+  # Skip CSRF protection for health checks
+  skip_before_action :verify_authenticity_token
+  
   def check
+    # Simple health check that responds quickly
+    render json: {
+      status: 'ok',
+      timestamp: Time.current,
+      environment: Rails.env
+    }
+  end
+
+  def simple
+    # Ultra-simple health check for Railway
+    render plain: 'OK'
+  end
+
+  def detailed
+    # Detailed health check with database and Redis status
     render json: {
       status: 'ok',
       timestamp: Time.current,
@@ -19,7 +37,7 @@ class HealthController < ApplicationController
   end
 
   def redis_status
-    if defined?(Redis)
+    if defined?(Redis) && ENV['REDIS_URL'].present?
       redis = Redis.new(url: ENV['REDIS_URL'])
       redis.ping
       'connected'

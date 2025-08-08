@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Health check endpoint
+  # Health check endpoints
   get 'health', to: 'health#check'
+  get 'health/simple', to: 'health#simple'
+  get 'health/detailed', to: 'health#detailed'
+  
+  # Simple root endpoint for health checks
+  get 'up', to: 'health#simple'
   
   # Main search page
   root 'search#index'
