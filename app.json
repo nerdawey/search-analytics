@@ -1,0 +1,36 @@
+{
+  "name": "Search Analytics",
+  "description": "Real-time search analytics application with intelligent event tracking",
+  "repository": "https://github.com/yourusername/search-analytics",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["ruby", "rails", "search", "analytics", "sidekiq", "redis"],
+  "addons": [
+    "heroku-postgresql:mini",
+    "heroku-redis:mini"
+  ],
+  "env": {
+    "RAILS_ENV": {
+      "description": "Rails environment",
+      "value": "production"
+    },
+    "RAILS_MASTER_KEY": {
+      "description": "Rails master key for production",
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}

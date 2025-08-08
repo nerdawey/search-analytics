@@ -1,0 +1,127 @@
+<div class="analytics-container">
+  <div class="analytics-header">
+    <h1>Search Analytics Dashboard</h1>
+    <p>Your personal search patterns and trends</p>
+  </div>
+
+  <div class="analytics-overview">
+    <div class="stat-card">
+      <h3>Total Searches</h3>
+      <div class="stat-value"><%= @total_searches %></div>
+    </div>
+    
+    <div class="stat-card">
+      <h3>Unique Terms</h3>
+      <div class="stat-value"><%= @unique_terms %></div>
+    </div>
+    
+    <div class="stat-card">
+      <h3>Article Views</h3>
+      <div class="stat-value"><%= @total_article_views %></div>
+    </div>
+    
+    <div class="stat-card">
+      <h3>Recent Activity</h3>
+      <div class="stat-value"><%= @recent_activity.count %></div>
+      <div class="stat-subtitle">Last 7 days</div>
+    </div>
+  </div>
+
+  <div class="analytics-content">
+    <div class="analytics-section">
+      <h2>Top Searched Terms</h2>
+      <% if @top_searches.any? %>
+        <div class="search-terms-list">
+          <% @top_searches.each_with_index do |summary, index| %>
+            <div class="search-term-item">
+              <div class="term-rank">#<%= index + 1 %></div>
+              <div class="term-details">
+                <a href="<%= search_path(q: summary.term) %>" class="term-link">
+                  <div class="term-text"><%= summary.term %></div>
+                  <div class="term-meta">
+                    Searched <%= summary.count %> time(s) • 
+                    Last: <%= summary.last_searched_at.strftime("%b %d, %Y") %>
+                  </div>
+                </a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No search data available yet. Start searching to see your patterns!</p>
+      <% end %>
+    </div>
+
+    <div class="analytics-section">
+      <h2>Most Visited Articles</h2>
+      <% if @top_articles.any? %>
+        <div class="article-views-list">
+          <% @top_articles.each_with_index do |article_view, index| %>
+            <div class="article-view-item">
+              <div class="article-rank">#<%= index + 1 %></div>
+              <div class="article-details">
+                <a href="<%= article_path(article_view.article) %>" class="article-link">
+                  <div class="article-title"><%= article_view.article.title %></div>
+                  <div class="article-meta">
+                    Viewed <%= article_view.count %> time(s) • 
+                    Last: <%= article_view.last_viewed_at.strftime("%b %d, %Y") %>
+                  </div>
+                </a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No article views yet. Start reading articles to see your favorites!</p>
+      <% end %>
+    </div>
+
+    <div class="analytics-section">
+      <h2>Recent Searches</h2>
+      <% if @recent_searches.any? %>
+        <div class="recent-searches-list">
+          <% @recent_searches.each do |summary| %>
+            <div class="recent-search-item">
+              <a href="<%= search_path(q: summary.term) %>" class="search-term-link">
+                <div class="search-term"><%= summary.term %></div>
+                <div class="search-time"><%= time_ago_in_words(summary.last_searched_at) %> ago</div>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No recent searches found.</p>
+      <% end %>
+    </div>
+
+    <div class="analytics-section">
+      <h2>Recent Activity Timeline</h2>
+      <% if @recent_activity.any? %>
+        <div class="activity-timeline">
+          <% @recent_activity.each do |summary| %>
+            <div class="timeline-item">
+              <div class="timeline-date">
+                <%= summary.last_searched_at.strftime("%b %d") %>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-term"><%= summary.term %></div>
+                <div class="timeline-count"><%= summary.count %> search(es)</div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p class="no-data">No recent activity to display.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="analytics-footer">
+    <p>
+      <strong>How it works:</strong> 
+      Your search behavior is tracked in real-time. Only meaningful searches (not intermediate keystrokes) 
+      are counted to avoid the "pyramid problem". Searches are finalized after 1 second of no typing, 
+      or immediately on Enter/blur events.
+    </p>
+  </div>
+</div>

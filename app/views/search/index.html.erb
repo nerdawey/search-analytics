@@ -1,0 +1,68 @@
+<div class="search-container">
+  <div class="search-header">
+    <h1>Real-time Search</h1>
+    <p>Start typing to search articles. Your search behavior is tracked for analytics.</p>
+  </div>
+
+  <div class="search-form">
+    <div class="search-input-wrapper">
+      <input 
+        type="text" 
+        id="search-input"
+        placeholder="Search articles..." 
+        class="search-input"
+        value="<%= @query %>"
+      >
+      <div class="loading-spinner" id="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-results" id="search-results">
+    <% if @query.present? %>
+      <% if @articles.any? %>
+        <div class="results-header">
+          <h2>Search Results for "<%= @query %>"</h2>
+          <p>Found <%= @articles.count %> article(s)</p>
+        </div>
+        
+        <div class="articles-list">
+          <% @articles.each do |article| %>
+            <article class="article-card">
+              <h3 class="article-title"><%= article.title %></h3>
+              <p class="article-meta">
+                Published: <%= article.published_at&.strftime("%B %d, %Y") %>
+              </p>
+              <p class="article-excerpt">
+                <%= truncate(article.content, length: 200) %>
+              </p>
+            </article>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="no-results">
+          <h2>No results found for "<%= @query %>"</h2>
+          <p>Try different keywords or check your spelling.</p>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="search-placeholder">
+        <div class="features">
+          <div class="feature">
+            <h3>🔍 Real-time Search</h3>
+            <p>Results update as you type</p>
+          </div>
+          <div class="feature">
+            <h3>📊 Analytics Dashboard</h3>
+            <p>View your search patterns and trends</p>
+          </div>
+          <div class="feature">
+            <h3>⚡ Smart Tracking</h3>
+            <p>Only meaningful searches are counted</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

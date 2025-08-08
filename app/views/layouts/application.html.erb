@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Analytics</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <h1 class="nav-title">Search Analytics</h1>
+        <div class="nav-links">
+          <%= link_to "Search", root_path, class: "nav-link" %>
+          <%= link_to "Analytics", analytics_path, class: "nav-link" %>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <% if notice %>
+        <div class="alert alert-success"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger"><%= alert %></div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2024 Search Analytics. Built with Rails & Vanilla JS.</p>
+    </footer>
+
+    <script>
+      // Vanilla JavaScript for real-time search
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('search-input');
+        const resultsContainer = document.getElementById('search-results');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        
+        if (!searchInput) return; // Not on search page
+        
+        let searchTimeout;
+        let sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        let lastKeystrokeTime = Date.now();
+        let isFinalized = false; // Flag to prevent multiple finalizations
+        
+        // Track keystrokes in real-time
+        searchInput.addEventListener('input', function(e) {
+          const value = e.target.value;
+          const currentTime = Date.now();
+          
+          // Reset finalized flag on new input
+          isFinalized = false;
+          
+          // Send keystroke event
+          sendSearchEvent('keystroke', value, sessionId);
+          
+          // Update last keystroke time
+          lastKeystrokeTime = currentTime;
+          
+          // Clear previous timeout
+          if (searchTimeout) {
+            clearTimeout(searchTimeout);
+          }
+          
+          // Set new timeout for finalization
+          searchTimeout = setTimeout(() => {
+            finalizeSearch(value, sessionId);
+          }, 1000); // 1 second delay
+          
+          // Perform instant search
+          performSearch(value);
+        });
+        
+        // Finalize on Enter key
+        searchInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            if (searchTimeout) {
+              clearTimeout(searchTimeout);
+            }
+            finalizeSearch(e.target.value, sessionId);
+          }
+        });
+        
+        // Finalize on blur (losing focus)
+        searchInput.addEventListener('blur', function() {
+          if (searchTimeout) {
+            clearTimeout(searchTimeout);
+          }
+          finalizeSearch(this.value, sessionId);
+        });
+        
+        // Finalize on selection
+        searchInput.addEventListener('select', function() {
+          if (searchTimeout) {
+            clearTimeout(searchTimeout);
+          }
+          finalizeSearch(this.value, sessionId);
+        });
+        
+        function sendSearchEvent(eventType, value, sessionId) {
+          fetch('/api/search_events', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({
+              event_type: eventType,
+              raw_value: value,
+              session_id: sessionId
+            })
+          }).catch(error => {
+            console.error('Error sending search event:', error);
+          });
+        }
+        
+        function finalizeSearch(value, currentSessionId) {
+          // Prevent multiple finalizations for the same session
+          if (isFinalized || currentSessionId !== sessionId) {
+            return;
+          }
+          
+          isFinalized = true;
+          sendSearchEvent('finalize', value, currentSessionId);
+          
+          // Create new session for next search
+          sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        function performSearch(query) {
+          if (query.trim() === '') {
+            showPlaceholder();
+            return;
+          }
+          
+          showLoading();
+          
+          fetch(`/search?q=${encodeURIComponent(query)}`, {
+            headers: {
+              'Accept': 'text/html',
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          })
+          .then(response => response.text())
+          .then(html => {
+            resultsContainer.innerHTML = html;
+            hideLoading();
+          })
+          .catch(error => {
+            console.error('Search error:', error);
+            hideLoading();
+            showError();
+          });
+        }
+        
+        function showLoading() {
+          if (loadingSpinner) {
+            loadingSpinner.style.display = 'block';
+          }
+        }
+        
+        function hideLoading() {
+          if (loadingSpinner) {
+            loadingSpinner.style.display = 'none';
+          }
+        }
+        
+        function showPlaceholder() {
+          resultsContainer.innerHTML = `
+            <div class="search-placeholder">
+              <p>Start typing to search articles...</p>
+            </div>
+          `;
+        }
+        
+        function showError() {
+          resultsContainer.innerHTML = `
+            <div class="search-error">
+              <p>Error performing search. Please try again.</p>
+            </div>
+          `;
+        }
+        
+        // Initialize with placeholder
+        showPlaceholder();
+        
+        // Auto-search if there's a query parameter (coming from analytics)
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialQuery = urlParams.get('q');
+        if (initialQuery && searchInput) {
+          searchInput.value = initialQuery;
+          
+          // Create a new session for this auto-search
+          sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          
+          // Send keystroke event to simulate typing
+          sendSearchEvent('keystroke', initialQuery, sessionId);
+          
+          // Send finalize event immediately
+          sendSearchEvent('finalize', initialQuery, sessionId);
+          
+          // Perform the search
+          performSearch(initialQuery);
+        }
+      });
+    </script>
+  </body>
+</html>

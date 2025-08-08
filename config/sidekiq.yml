@@ -1,0 +1,13 @@
+:concurrency: 5
+:queues:
+  - [default, 1]
+  - [mailers, 2]
+  - [critical, 3]
+
+:max_retries: 3
+:retry_interval: 5
+
+# Redis configuration
+:redis:
+  :url: redis://localhost:6379/0
+  :namespace: search_analytics_development

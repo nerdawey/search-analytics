@@ -1,0 +1,16 @@
+<div class="article-container">
+  <div class="article-header">
+    <div class="article-meta">
+      <span class="article-date">Published: <%= @article.published_at&.strftime("%B %d, %Y") %></span>
+    </div>
+    <h1 class="article-title"><%= @article.title %></h1>
+  </div>
+  
+  <div class="article-content">
+    <%= simple_format(@article.content) %>
+  </div>
+  
+  <div class="article-footer">
+    <a href="<%= root_path %>" class="back-button">← Back to Search</a>
+  </div>
+</div>
