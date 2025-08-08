@@ -26,7 +26,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.4'
   gem 'faker', '~> 3.2'
   gem 'rails-controller-testing', '~> 1.0'
-  gem 'rspec-rails', '~> 6.0'
+  gem 'rspec-rails', '~> 7.1'
   gem 'selenium-webdriver', '~> 4.10'
   gem 'shoulda-matchers', '~> 5.3'
   gem 'timecop', '~> 0.9'
