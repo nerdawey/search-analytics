@@ -36,7 +36,7 @@ end
 group :development do
   gem 'annotate', '~> 3.2'
   gem 'brakeman', '~> 6.1'
-  gem 'bullet', '~> 7.0'
+  gem 'bullet', '~> 8.0'
   gem 'error_highlight', platforms: [:ruby]
   gem 'rubocop', '~> 1.50', require: false
   gem 'rubocop-rails', '~> 2.20', require: false
