@@ -140,18 +140,18 @@ RSpec.describe SearchController do
   end
 
   describe 'user identification' do
-    it 'generates user hash based on IP and session' do
+    it 'generates user hash based on IP and persistent user ID' do
       allow(request).to receive(:remote_ip).and_return('192.168.1.1')
-      allow(session).to receive(:id).and_return('session123')
       allow(Rails.application).to receive(:secret_key_base).and_return('secret')
+      allow(controller).to receive(:cookies).and_return(double(signed: { user_id: 'test-user-id' }))
 
       get :index
       actual_hash = assigns(:user_hash)
 
       actual_ip = request.remote_ip
-      actual_session_id = session.id
+      actual_user_id = 'test-user-id'
       actual_secret = Rails.application.secret_key_base
-      expected_hash = Digest::SHA256.hexdigest("#{actual_ip}#{actual_session_id}#{actual_secret}")
+      expected_hash = Digest::SHA256.hexdigest("#{actual_ip}#{actual_user_id}#{actual_secret}")
 
       expect(actual_hash).to eq(expected_hash)
     end

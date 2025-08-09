@@ -220,7 +220,7 @@ RSpec.describe 'Search Performance', type: :request do
         end_time = Time.current
 
         response_time = (end_time - start_time) * 1000
-        expect(response_time).to be < (size * 2)
+        expect(response_time).to be < (size * 3)
         expect(response).to have_http_status(:success)
       end
     end

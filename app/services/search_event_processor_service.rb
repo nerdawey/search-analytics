@@ -27,10 +27,10 @@ class SearchEventProcessorService < BaseService
   private
 
   def find_final_event(events)
-    finalize_event = events.finalized.last
+    finalize_event = events.finalize.last
     return finalize_event if finalize_event
 
-    events.keystrokes.last
+    events.keystroke.last
   end
 
   def meaningful_search?(events, final_term)
