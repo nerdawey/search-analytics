@@ -1,4 +1,3 @@
-# Configure Sidekiq for all environments
 Rails.application.config.after_initialize do
   redis_url = ENV['REDIS_URL']
   

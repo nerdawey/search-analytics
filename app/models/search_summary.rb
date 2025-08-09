@@ -8,6 +8,8 @@ class SearchSummary < ApplicationRecord
   scope :recent, -> { order(last_searched_at: :desc) }
   scope :by_user, ->(user_hash) { where(user_hash: user_hash) }
   scope :top_terms, ->(limit = 10) { order(count: :desc).limit(limit) }
+  scope :prefix_of, ->(term) { where("? LIKE term || '%'", term) }
+  scope :excluding_term, ->(term) { where.not(term: term) }
 
   def self.increment_or_create(user_hash:, term:)
     normalized_term = normalize_term(term)

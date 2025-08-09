@@ -1,4 +1,3 @@
-# Configure Active Job queue adapter
 Rails.application.config.after_initialize do
   if Rails.env.production?
     if ENV['REDIS_URL'].present?

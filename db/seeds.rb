@@ -1,14 +1,4 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 
-# Create dummy articles for testing
 puts "Creating dummy articles..."
 
 articles_data = [
@@ -85,15 +75,12 @@ end
 
 puts "Created #{Article.count} articles"
 
-# Create some article views to demonstrate the analytics
 puts "Creating article views..."
 
-# Generate unique user hashes for different users
 user1_hash = Digest::SHA256.hexdigest("user1_ip_user1_session_secret")
 user2_hash = Digest::SHA256.hexdigest("user2_ip_user2_session_secret")
 user3_hash = Digest::SHA256.hexdigest("user3_ip_user3_session_secret")
 
-# User 1 viewed some articles
 ArticleView.create!(
   user_hash: user1_hash,
   article: Article.find_by(title: "Hello world how are you?"),
@@ -108,7 +95,6 @@ ArticleView.create!(
   last_viewed_at: 30.minutes.ago
 )
 
-# User 2 viewed different articles
 ArticleView.create!(
   user_hash: user2_hash,
   article: Article.find_by(title: "How is emil hajric doing"),
@@ -123,7 +109,6 @@ ArticleView.create!(
   last_viewed_at: 15.minutes.ago
 )
 
-# User 3 viewed more articles
 ArticleView.create!(
   user_hash: user3_hash,
   article: Article.find_by(title: "What is a good car"),

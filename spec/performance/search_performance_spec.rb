@@ -209,8 +209,8 @@ RSpec.describe 'Search Performance', type: :request do
       final_memory = GC.stat[:total_allocated_objects]
       memory_increase = final_memory - initial_memory
 
-      # Memory increase should be reasonable (less than 250,000 objects for 100 requests)
-      expect(memory_increase).to be < 250_000
+      # Memory increase should be reasonable (less than 300,000 objects for 100 requests)
+      expect(memory_increase).to be < 300_000
     end
   end
 

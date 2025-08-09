@@ -3,22 +3,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.6'
 
-# Rails and core dependencies
 gem 'bootsnap', require: false
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.0'
 
-# Background job processing
 gem 'redis', '~> 4.5.0'
 gem 'sidekiq', '~> 6.5.12'
 
-# Asset pipeline and frontend
 gem 'jbuilder'
 gem 'sprockets-rails'
 gem 'turbo-rails'
 
-# Development and testing
 group :development, :test do
   gem 'capybara', '~> 3.39'
   gem 'database_cleaner-active_record', '~> 2.1'
@@ -36,7 +32,6 @@ end
 group :development do
   gem 'annotate', '~> 3.2'
   gem 'brakeman', '~> 6.1'
-  gem 'bullet', '~> 7.0'
   gem 'error_highlight', platforms: [:ruby]
   gem 'rubocop', '~> 1.50', require: false
   gem 'rubocop-rails', '~> 2.20', require: false
@@ -50,7 +45,6 @@ group :test do
   gem 'webmock', '~> 3.18'
 end
 
-# Production
 group :production do
   gem 'rack-attack', '~> 6.6'
 end

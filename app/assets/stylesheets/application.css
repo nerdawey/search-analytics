@@ -1,20 +1,6 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+*= require_tree .
+*= require_self
 
-/* Reset and base styles */
 * {
   box-sizing: border-box;
 }
@@ -34,7 +20,6 @@ body {
   padding: 0 20px;
 }
 
-/* Navigation */
 .navbar {
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -86,7 +71,6 @@ body {
   color: white;
 }
 
-/* Main content */
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -94,7 +78,6 @@ body {
   min-height: calc(100vh - 140px);
 }
 
-/* Alerts */
 .alert {
   padding: 1rem;
   margin-bottom: 1rem;
@@ -114,7 +97,6 @@ body {
   color: #721c24;
 }
 
-/* Search Container */
 .search-container {
   max-width: 800px;
   margin: 0 auto;
@@ -141,7 +123,6 @@ body {
   margin: 0 auto;
 }
 
-/* Search Form */
 .search-form {
   margin-bottom: 2rem;
 }
@@ -188,7 +169,6 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* Search Results */
 .search-results {
   min-height: 200px;
 }
@@ -209,7 +189,6 @@ body {
   gap: 1.5rem;
 }
 
-/* Article Cards */
 .article-card {
   background: #fff;
   border-radius: 8px;
@@ -255,7 +234,6 @@ body {
   margin: 0;
 }
 
-/* Article Show Page */
 .article-container {
   max-width: 800px;
   margin: 0 auto;
@@ -336,7 +314,6 @@ body {
   text-decoration: none;
 }
 
-/* Placeholder and No Results */
 .search-placeholder, .no-results {
   text-align: center;
   padding: 3rem 1rem;
@@ -366,7 +343,6 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* Analytics */
 .analytics-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -437,7 +413,6 @@ body {
   border-bottom: 2px solid #e9ecef;
 }
 
-/* Search Terms List */
 .search-terms-list {
   display: grid;
   gap: 1rem;
@@ -500,7 +475,6 @@ body {
   color: #6c757d;
 }
 
-/* Recent Searches */
 .recent-searches-list {
   display: grid;
   gap: 0.75rem;
@@ -547,7 +521,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* Activity Timeline */
 .activity-timeline {
   display: grid;
   gap: 1rem;
@@ -583,7 +556,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* No Data */
 .no-data {
   text-align: center;
   color: #666;
@@ -591,7 +563,6 @@ body {
   padding: 2rem;
 }
 
-/* Analytics Footer */
 .analytics-footer {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -605,7 +576,6 @@ body {
   line-height: 1.6;
 }
 
-/* Footer */
 .footer {
   margin-top: 4rem;
   padding: 2rem 0;
@@ -619,7 +589,6 @@ body {
   opacity: 0.8;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .container {
     padding: 0 15px;

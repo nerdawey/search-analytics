@@ -8,7 +8,10 @@ class SearchEvent < ApplicationRecord
   scope :by_user, ->(user_hash) { where(user_hash: user_hash) }
   scope :by_session, ->(session_id) { where(session_id: session_id) }
   scope :keystrokes, -> { where(event_type: 'keystroke') }
+  scope :keystroke, -> { where(event_type: 'keystroke') }
   scope :finalized, -> { where(event_type: 'finalize') }
+  scope :finalize, -> { where(event_type: 'finalize') }
+  scope :ordered_by_created_at, -> { order(:created_at) }
 
   def self.create_keystroke(user_hash:, session_id:, raw_value:)
     create!(

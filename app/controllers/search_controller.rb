@@ -2,29 +2,22 @@ class SearchController < ApplicationController
   before_action :set_user_hash
 
   def index
-    @articles = []
     @query = params[:q]
+    @articles = SearchService.new(@query).perform_search
 
-    @articles = Article.search(@query) if @query.present?
-
-    # If it's an AJAX request, render only the search results
     render partial: 'search_results', locals: { articles: @articles, query: @query } if request.xhr?
   end
 
   def analytics
-    @top_searches = SearchSummary.top_searches_for_user(@user_hash, 10)
-    @recent_searches = SearchSummary.recent_searches_for_user(@user_hash, 10)
-    @top_articles = ArticleView.top_articles_for_user(@user_hash, 5)
+    analytics_data = SearchAnalyticsService.new(@user_hash).analytics_data
 
-    # Get some basic trends
-    @total_searches = SearchSummary.by_user(@user_hash).sum(:count)
-    @unique_terms = SearchSummary.by_user(@user_hash).count
-    @total_article_views = ArticleView.by_user(@user_hash).sum(:count)
-
-    # Get searches from the last 7 days
-    @recent_activity = SearchSummary.by_user(@user_hash)
-      .where(last_searched_at: 7.days.ago..)
-      .order(:last_searched_at)
+    @top_searches = analytics_data[:top_searches]
+    @recent_searches = analytics_data[:recent_searches]
+    @top_articles = analytics_data[:top_articles]
+    @total_searches = analytics_data[:total_searches]
+    @unique_terms = analytics_data[:unique_terms]
+    @total_article_views = analytics_data[:total_article_views]
+    @recent_activity = analytics_data[:recent_activity]
   end
 
   private
