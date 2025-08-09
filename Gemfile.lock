@@ -96,9 +96,6 @@ GEM
     brakeman (6.2.2)
       racc
     builder (3.3.0)
-    bullet (7.2.0)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11)
     capybara (3.40.0)
       addressable
       matrix
@@ -144,9 +141,9 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    jbuilder (2.13.0)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
+    jbuilder (2.14.0)
+      actionview (>= 7.0.0)
+      activesupport (>= 7.0.0)
     json (2.13.2)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
@@ -338,7 +335,6 @@ GEM
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
-    uniform_notifier (1.17.0)
     vcr (6.3.1)
       base64
     web-console (4.2.1)
@@ -371,7 +367,6 @@ DEPENDENCIES
   annotate (~> 3.2)
   bootsnap
   brakeman (~> 6.1)
-  bullet (~> 7.0)
   capybara (~> 3.39)
   database_cleaner-active_record (~> 2.1)
   debug
