@@ -6,7 +6,7 @@ ruby '3.2.6'
 gem 'bootsnap', require: false
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 7.2.2'
 
 gem 'redis', '~> 4.5.0'
 gem 'sidekiq', '~> 6.5.12'
