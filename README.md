@@ -1,8 +1,7 @@
-# 🔍 Search Analytics Platform
+#  Search Analytics Platform
 
-A real-time search analytics platform built with Ruby on Rails that provides instant search functionality with advanced analytics and user behavior tracking.
 
-## 🚀 Features
+## Features
 
 ### Core Functionality
 - **Real-time Search**: Instant search results as you type
@@ -17,7 +16,7 @@ A real-time search analytics platform built with Ruby on Rails that provides ins
 - **Scalable Architecture**: Built for growth and high traffic
 - **Comprehensive Testing**: Full test coverage with performance benchmarks
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - **Backend**: Ruby on Rails 7.1.0
 - **Database**: PostgreSQL
@@ -27,14 +26,14 @@ A real-time search analytics platform built with Ruby on Rails that provides ins
 - **Code Quality**: RuboCop with comprehensive linting
 - **Deployment**: Heroku/Render ready
 
-## 📋 Prerequisites
+##  Prerequisites
 
 - Ruby 3.2.6
 - Rails 7.1.0
 - PostgreSQL
 - Node.js (for asset compilation)
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Clone the Repository
 ```bash
@@ -61,7 +60,7 @@ rails server
 
 Visit `http://localhost:3000` to see the application.
 
-## 📊 How It Works
+##  How It Works
 
 ### Search Analytics Algorithm
 
@@ -89,7 +88,7 @@ System records: "Hello world how are you?" (only the final meaningful search)
 - Finalize events trigger analytics processing
 - Synchronous processing for reliability
 
-## 🏗 Architecture
+##  Architecture
 
 ### Models
 - **Article**: Content management with search functionality
@@ -108,7 +107,7 @@ System records: "Hello world how are you?" (only the final meaningful search)
 - **Session Management**: User session tracking
 - **Performance Optimization**: Database indexing and query optimization
 
-## 🧪 Testing
+##  Testing
 
 ### Run All Tests
 ```bash
@@ -132,7 +131,7 @@ bundle exec rspec spec/performance/
 - Analytics dashboard: < 200ms
 - Database queries: < 50ms
 
-## 📈 Analytics Dashboard
+##  Analytics Dashboard
 
 ### Available Metrics
 - **Top Searched Terms**: Most popular search terms
@@ -147,7 +146,7 @@ bundle exec rspec spec/performance/
 - Real-time data updates
 - User-specific analytics
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 ```bash
@@ -167,46 +166,8 @@ SECRET_KEY_BASE=your-secret-key
 - Connection pooling for performance
 - Migration-based schema management
 
-## 🚀 Deployment
 
-### Heroku Deployment
-```bash
-# Create Heroku app
-heroku create your-app-name
-
-# Add PostgreSQL
-heroku addons:create heroku-postgresql
-
-# Deploy
-git push heroku main
-
-# Run migrations
-heroku run rails db:migrate
-
-# Seed data
-heroku run rails db:seed
-```
-
-### Render Deployment
-- Connect your GitHub repository
-- Set environment variables
-- Automatic deployments on push
-
-## 📊 Performance
-
-### Scalability Features
-- **Database Optimization**: Proper indexing and query optimization
-- **Caching Strategy**: Session-based caching
-- **Background Processing**: Sidekiq for heavy operations
-- **Load Balancing**: Ready for horizontal scaling
-
-### Performance Metrics
-- **Response Time**: < 500ms for search queries
-- **Throughput**: 1000+ requests per hour
-- **Memory Usage**: Optimized object allocation
-- **Database Performance**: Efficient query patterns
-
-## 🔍 API Endpoints
+##  API Endpoints
 
 ### Search Events API
 ```http
@@ -237,7 +198,7 @@ GET /analytics
 GET /articles/:id
 ```
 
-## 🛡 Security
+##  Security
 
 ### Data Protection
 - **Anonymous Tracking**: No personal data collection
@@ -250,53 +211,7 @@ GET /articles/:id
 - **Session-based**: Temporary user identification
 - **Compliant**: GDPR-friendly data handling
 
-## 🤝 Contributing
-
-### Development Setup
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Run the test suite
-6. Submit a pull request
 
 ### Code Quality
 - **RuboCop**: All code must pass linting
 - **RSpec**: Maintain test coverage
-- **Performance**: Meet performance benchmarks
-- **Documentation**: Update docs for new features
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Support
-
-### Common Issues
-- **Database Connection**: Ensure PostgreSQL is running
-- **Asset Compilation**: Check Node.js installation
-- **Test Failures**: Verify database setup and seed data
-
-### Getting Help
-- Check the test suite for usage examples
-- Review the performance benchmarks
-- Examine the analytics dashboard for data insights
-
-## 🎯 Project Goals
-
-### Primary Objectives
-- **Real-time Search**: Instant, responsive search experience
-- **Smart Analytics**: Intelligent search behavior tracking
-- **Scalability**: Handle high traffic and growth
-- **Performance**: Fast, efficient operations
-- **Reliability**: Robust, error-free operation
-
-### Success Metrics
-- **Search Response Time**: < 500ms
-- **Analytics Accuracy**: 100% meaningful search capture
-- **System Uptime**: 99.9% availability
-- **User Experience**: Intuitive, fast interface
-
----
-
-**Built with ❤️ using Ruby on Rails**
