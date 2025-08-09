@@ -8,7 +8,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.0'
 
-gem 'redis', '~> 4.5.0'
+gem 'redis', '~> 4.8.1'
 gem 'sidekiq', '~> 6.5.12'
 
 gem 'jbuilder'

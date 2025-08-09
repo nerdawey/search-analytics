@@ -96,9 +96,6 @@ GEM
     brakeman (6.2.2)
       racc
     builder (3.3.0)
-    bullet (7.2.0)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11)
     capybara (3.40.0)
       addressable
       matrix
@@ -241,7 +238,7 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
-    redis (4.5.1)
+    redis (4.8.1)
     regexp_parser (2.11.0)
     reline (0.6.2)
       io-console (~> 0.5)
@@ -338,7 +335,6 @@ GEM
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
-    uniform_notifier (1.17.0)
     vcr (6.3.1)
       base64
     web-console (4.2.1)
@@ -371,7 +367,6 @@ DEPENDENCIES
   annotate (~> 3.2)
   bootsnap
   brakeman (~> 6.1)
-  bullet (~> 7.0)
   capybara (~> 3.39)
   database_cleaner-active_record (~> 2.1)
   debug
@@ -384,7 +379,7 @@ DEPENDENCIES
   rack-attack (~> 6.6)
   rails (~> 7.1.0)
   rails-controller-testing (~> 1.0)
-  redis (~> 4.5.0)
+  redis (~> 4.8.1)
   rspec-benchmark (~> 0.6)
   rspec-rails (~> 6.0)
   rubocop (~> 1.50)
