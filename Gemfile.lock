@@ -96,9 +96,6 @@ GEM
     brakeman (6.2.2)
       racc
     builder (3.3.0)
-    bullet (7.2.0)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11)
     capybara (3.40.0)
       addressable
       matrix
@@ -193,16 +190,16 @@ GEM
     puma (6.6.1)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.17)
+    rack (3.2.0)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
-    rack-session (1.0.2)
-      rack (< 3)
+    rack-session (2.1.1)
+      base64 (>= 0.1.0)
+      rack (>= 3.0.0)
     rack-test (2.2.0)
       rack (>= 1.3)
-    rackup (1.0.1)
-      rack (< 3)
-      webrick
+    rackup (2.2.1)
+      rack (>= 3)
     rails (7.1.5.1)
       actioncable (= 7.1.5.1)
       actionmailbox (= 7.1.5.1)
@@ -242,6 +239,8 @@ GEM
       erb
       psych (>= 4.0.0)
     redis (4.5.1)
+    redis-client (0.25.1)
+      connection_pool
     regexp_parser (2.11.0)
     reline (0.6.2)
       io-console (~> 0.5)
@@ -314,10 +313,12 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
-    sidekiq (6.5.12)
-      connection_pool (>= 2.2.5, < 3)
-      rack (~> 2.0)
-      redis (>= 4.5.0, < 5)
+    sidekiq (8.0.7)
+      connection_pool (>= 2.5.0)
+      json (>= 2.9.0)
+      logger (>= 1.6.2)
+      rack (>= 3.1.0)
+      redis-client (>= 0.23.2)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -338,7 +339,6 @@ GEM
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
-    uniform_notifier (1.17.0)
     vcr (6.3.1)
       base64
     web-console (4.2.1)
@@ -354,7 +354,6 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webrick (1.9.1)
     websocket (1.2.11)
     websocket-driver (0.8.0)
       base64
@@ -371,7 +370,6 @@ DEPENDENCIES
   annotate (~> 3.2)
   bootsnap
   brakeman (~> 6.1)
-  bullet (~> 7.0)
   capybara (~> 3.39)
   database_cleaner-active_record (~> 2.1)
   debug
@@ -392,7 +390,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2.20)
   selenium-webdriver (~> 4.10)
   shoulda-matchers (~> 5.3)
-  sidekiq (~> 6.5.12)
+  sidekiq (~> 8.0.7)
   sprockets-rails
   timecop (~> 0.9)
   turbo-rails

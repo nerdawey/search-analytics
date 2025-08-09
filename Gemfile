@@ -9,7 +9,7 @@ gem 'puma', '>= 5.0'
 gem 'rails', '~> 7.1.0'
 
 gem 'redis', '~> 4.5.0'
-gem 'sidekiq', '~> 6.5.12'
+gem 'sidekiq', '~> 8.0.7'
 
 gem 'jbuilder'
 gem 'sprockets-rails'
