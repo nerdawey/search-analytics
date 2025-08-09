@@ -7,9 +7,7 @@ class SearchEvent < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
   scope :by_user, ->(user_hash) { where(user_hash: user_hash) }
   scope :by_session, ->(session_id) { where(session_id: session_id) }
-  scope :keystrokes, -> { where(event_type: 'keystroke') }
   scope :keystroke, -> { where(event_type: 'keystroke') }
-  scope :finalized, -> { where(event_type: 'finalize') }
   scope :finalize, -> { where(event_type: 'finalize') }
   scope :ordered_by_created_at, -> { order(:created_at) }
 

@@ -14,7 +14,7 @@ class ProcessSearchSessionJob < ApplicationJob
     events.keystroke.ordered_by_created_at.last
   end
 
-  def meaningful_search?(events, final_term)
+  def meaningful_search?(_events, final_term)
     return false if final_term.blank?
     return false if final_term.length < 2
     return false if final_term.chars.uniq.length == 1

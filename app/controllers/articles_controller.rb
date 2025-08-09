@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
       @article = result[:result]
       ArticleViewService.new(@user_hash).track_view(@article)
     else
-      redirect_to root_path, alert: 'Article not found.'
+      redirect_to root_path, alert: t('articles.not_found')
     end
   end
 

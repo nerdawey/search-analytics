@@ -13,7 +13,6 @@ RSpec.describe 'Api::SearchEvents' do
   end
 
   before do
-    # Mock the user hash generation to be consistent across all tests
     allow_any_instance_of(ApplicationController).to receive(:generate_user_hash).and_return(user_hash)
   end
 
@@ -88,7 +87,6 @@ RSpec.describe 'Api::SearchEvents' do
           post api_search_events_path, params: finalize_params, as: :json
         end.to change(SearchEvent, :count).by(1)
 
-        # Should also create a search summary if the search is meaningful
         expect(SearchSummary.count).to be >= 0
       end
     end

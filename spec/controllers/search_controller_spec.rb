@@ -104,12 +104,12 @@ RSpec.describe SearchController do
 
     it 'calculates total searches correctly' do
       get :analytics
-      expect(assigns(:total_searches)).to eq(8) # 5 + 3
+      expect(assigns(:total_searches)).to eq(8)
     end
 
     it 'calculates unique terms correctly' do
       get :analytics
-      expect(assigns(:unique_terms)).to eq(2) # ruby, rails
+      expect(assigns(:unique_terms)).to eq(2)
     end
 
     it 'calculates total article views correctly' do
@@ -128,13 +128,13 @@ RSpec.describe SearchController do
 
     it 'orders top searches by count descending' do
       get :analytics
-      expect(assigns(:top_searches).first).to eq(search_summary1) # count: 5
-      expect(assigns(:top_searches).second).to eq(search_summary2) # count: 3
+      expect(assigns(:top_searches).first).to eq(search_summary1)
+      expect(assigns(:top_searches).second).to eq(search_summary2)
     end
 
     it 'orders recent searches by last_searched_at descending' do
       get :analytics
-      expect(assigns(:recent_searches).first).to eq(search_summary2) # more recent
+      expect(assigns(:recent_searches).first).to eq(search_summary2)
       expect(assigns(:recent_searches).second).to eq(search_summary1)
     end
   end
@@ -148,7 +148,6 @@ RSpec.describe SearchController do
       get :index
       actual_hash = assigns(:user_hash)
 
-      # Use the actual values that were used to calculate the expected hash
       actual_ip = request.remote_ip
       actual_session_id = session.id
       actual_secret = Rails.application.secret_key_base

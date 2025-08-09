@@ -1,5 +1,6 @@
 class AdvancedSearchService < BaseService
   def initialize(query)
+    super
     @query = query
   end
 

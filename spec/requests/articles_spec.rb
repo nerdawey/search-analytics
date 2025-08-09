@@ -5,7 +5,6 @@ RSpec.describe 'Articles' do
   let(:user_hash) { 'user123' }
 
   before do
-    # Mock the user hash generation to be consistent across all tests
     allow_any_instance_of(ApplicationController).to receive(:generate_user_hash).and_return(user_hash)
   end
 
@@ -72,11 +71,9 @@ RSpec.describe 'Articles' do
       let(:other_user_hash) { 'other_user' }
 
       it 'tracks views separately for different users' do
-        # First user views article
         allow_any_instance_of(ApplicationController).to receive(:generate_user_hash).and_return(user_hash)
         get article_path(article)
 
-        # Second user views article
         allow_any_instance_of(ApplicationController).to receive(:generate_user_hash).and_return(other_user_hash)
         get article_path(article)
 
@@ -89,10 +86,8 @@ RSpec.describe 'Articles' do
 
   describe 'Analytics integration' do
     it 'shows article views in analytics dashboard' do
-      # View an article
       get article_path(article)
 
-      # Check analytics dashboard
       get analytics_path
       expect(response.body).to include('Most Visited Articles')
       expect(response.body).to include('Ruby on Rails Guide')
@@ -100,11 +95,9 @@ RSpec.describe 'Articles' do
     end
 
     it 'shows multiple article views correctly' do
-      # View article multiple times
       get article_path(article)
       get article_path(article)
 
-      # Check analytics dashboard
       get analytics_path
       expect(response.body).to include('Viewed 2 time')
     end

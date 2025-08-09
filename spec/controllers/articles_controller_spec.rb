@@ -70,11 +70,9 @@ RSpec.describe ArticlesController do
       let(:other_user_hash) { 'other_user' }
 
       it 'tracks views separately for different users' do
-        # First user views article
         allow(controller).to receive(:generate_user_hash).and_return(user_hash)
         get :show, params: { id: article.id }
 
-        # Second user views article
         allow(controller).to receive(:generate_user_hash).and_return(other_user_hash)
         get :show, params: { id: article.id }
 
@@ -94,7 +92,6 @@ RSpec.describe ArticlesController do
       get :show, params: { id: article.id }
       actual_hash = assigns(:user_hash)
 
-      # Use the actual values that were used to calculate the expected hash
       actual_ip = request.remote_ip
       actual_session_id = session.id
       actual_secret = Rails.application.secret_key_base

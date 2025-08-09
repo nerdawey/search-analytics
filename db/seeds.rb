@@ -73,7 +73,7 @@ articles_data.each do |article_data|
   Article.create!(article_data)
 end
 
-puts "Created #{Article.count} articles"
+
 
 puts "Creating article views..."
 
@@ -123,5 +123,5 @@ ArticleView.create!(
   last_viewed_at: 10.minutes.ago
 )
 
-puts "Created #{ArticleView.count} article views"
+
 puts "Seed data completed!"

@@ -4,7 +4,6 @@ RSpec.describe 'Search' do
   let(:user_hash) { 'user123' }
 
   before do
-    # Mock the user hash generation to be consistent across all tests
     allow_any_instance_of(ApplicationController).to receive(:generate_user_hash).and_return(user_hash)
   end
 
@@ -57,7 +56,7 @@ RSpec.describe 'Search' do
       it 'returns only search results partial' do
         get search_path, params: { q: 'Ruby' }, headers: { 'X-Requested-With' => 'XMLHttpRequest' }
         expect(response.body).to include('Ruby on Rails Guide')
-        expect(response.body).not_to include('Search Analytics') # No layout
+        expect(response.body).not_to include('Search Analytics')
       end
     end
   end

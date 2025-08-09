@@ -15,10 +15,8 @@ RSpec.describe ArticleView do
       user_hash = 'user123'
       article = create(:article)
 
-      # Create first article view
       create(:article_view, user_hash: user_hash, article: article)
 
-      # Try to create duplicate
       duplicate_view = build(:article_view, user_hash: user_hash, article: article)
       expect(duplicate_view).not_to be_valid
       expect(duplicate_view.errors[:article_id]).to include('has already been taken')

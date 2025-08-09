@@ -1,4 +1,6 @@
 class BaseService
+  def initialize(*); end
+
   def self.call(*)
     new(*).call
   end
